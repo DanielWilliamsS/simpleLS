@@ -17,3 +17,7 @@ list containing two elements: Parameters, df
 \description{
 Least Squares Regression
 }
+\examples{
+df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
+LS.r(y~x, data=df)
+}

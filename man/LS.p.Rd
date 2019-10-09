@@ -17,3 +17,8 @@ In-sample prediction vector if \code{newdata} not supplied. Otherwise out-of-sam
 \description{
 Least Squares Prediction
 }
+\examples{
+df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
+m = LS.r(y~x, data=df)
+LS.p(m)
+}

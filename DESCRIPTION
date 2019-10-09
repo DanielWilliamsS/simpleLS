@@ -1,0 +1,10 @@
+Package: simpleLS
+Type: Package
+Title: Implements a simple least squares function
+Version: 0.1.0
+Author: Daniel Williams
+Maintainer: Daniel Williams
+Description: Uses simple least squares regression on a given data set to output coefficients and make predictions
+License:  GNUv3
+Encoding: UTF-8
+LazyData: true

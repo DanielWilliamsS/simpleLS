@@ -17,8 +17,3 @@ list containing two elements: Parameters, df
 \description{
 Least Squares Regression
 }
-\examples{
-library(lasso2)
-data(Prostate)
-LS.r(lpsa ~ lcavol, data = Prostate)
-}

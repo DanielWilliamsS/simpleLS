@@ -1,4 +1,3 @@
-
 #' Least Squares Regression
 #'
 #' @param formula an object of class "formula"
@@ -8,9 +7,8 @@
 #' @export
 #'
 #' @examples
-#' library(lasso2)
-#' data(Prostate)
-#' LS.r(lpsa ~ lcavol, data = Prostate)
+#' df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
+#' LS.r(y~x, data=df)
 LS.r = function(formula, data = NULL){
 
   ys = all.vars(formula)[1]
@@ -22,6 +20,9 @@ LS.r = function(formula, data = NULL){
   return(list(Parameters = wLS, df = X))
 }
 
+# library(lasso2)
+# data(Prostate)
+# LS.r(lpsa ~ lcavol, data = Prostate)
 
 #' Least Squares Prediction
 #'
@@ -32,11 +33,9 @@ LS.r = function(formula, data = NULL){
 #' @export
 #'
 #' @examples
-#' library(lasso2)
-#' data(Prostate)
-#' m = LS.r(lpsa ~ lcavol, data = Prostate)
-#' plot(Prostate[,c("lcavol","lpsa")])
-#' plot(Prostate$lcavol,LS.p(m))
+#' df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
+#' m = LS.r(y~x, data=df)
+#' LS.p(m)
 LS.p = function(model, newdata=NULL){
 
   if(is.null(newdata))return(model$df %*% model$Parameters)
@@ -49,3 +48,9 @@ LS.p = function(model, newdata=NULL){
     }
 }
 
+
+# library(lasso2)
+# data(Prostate)
+# m = LS.r(lpsa ~ lcavol, data = Prostate)
+# plot(Prostate[,c("lcavol","lpsa")])
+# plot(Prostate$lcavol,LS.p(m))

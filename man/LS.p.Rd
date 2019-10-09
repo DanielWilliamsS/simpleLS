@@ -17,10 +17,3 @@ In-sample prediction vector if \code{newdata} not supplied. Otherwise out-of-sam
 \description{
 Least Squares Prediction
 }
-\examples{
-library(lasso2)
-data(Prostate)
-m = LS.r(lpsa ~ lcavol, data = Prostate)
-plot(Prostate[,c("lcavol","lpsa")])
-plot(Prostate$lcavol,LS.p(m))
-}

@@ -3,13 +3,13 @@
 #' @param formula an object of class "formula"
 #' @param data data frame to which the formula relates
 #'
-#' @return list containing two elements: Parameters, df
+#' @return list containing three elements: Parameters, df, y
 #' @export
 #'
 #' @examples
 #' df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
-#' LS.r(y~x, data=df)
-LS.r = function(formula, data = NULL){
+#' LS.model(y~x, data=df)
+LS.model = function(formula, data = NULL){
 
   ys = all.vars(formula)[1]
   y = data[,ys]
@@ -17,7 +17,7 @@ LS.r = function(formula, data = NULL){
 
   wLS =  solve(t(X) %*% X) %*% t(X) %*% y
 
-  return(list(Parameters = wLS, df = X))
+  return(list(Parameters = wLS, df = X, y = y))
 }
 #' Least Squares Prediction
 #'
@@ -29,11 +29,11 @@ LS.r = function(formula, data = NULL){
 #'
 #' @examples
 #' df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
-#' m = LS.r(y~x, data=df)
-#' LS.p(m)
-LS.p = function(model, newdata=NULL){
+#' m = LS.model(y~x, data=df)
+#' LS.predict(m)
+LS.predict = function(model, newdata=NULL){
 
-  if(is.null(newdata))return(model$df %*% model$Parameters)
+  if(is.null(newdata)) return(model$df %*% model$Parameters)
   if(!is.null(newdata)) {
     if(dim(as.matrix(newdata))[2]!=dim(as.matrix(newdata))[2]) {
       stop("Dimension of newdata different to dimension of training data")
@@ -41,4 +41,30 @@ LS.p = function(model, newdata=NULL){
     nd = cbind(1,newdata)
     return((nd) %*% model$Parameters)
     }
+}
+
+#' Plot least squares regression
+#'
+#' @param model
+#'
+#' @return
+#' @export
+#'
+#' @examples
+LS.plot = function(model, var = NULL,...){
+  X = model$df
+  y = model$y
+  d = dim(X)
+
+  if(is.null(var)){
+    print("var not specified, taking first input value")
+    names = colnames(X)[colnames(X)!="(Intercept)"]
+    var = names[1]
+  }
+
+  preds = LS.predict(model)
+  o = order(preds)
+  plot(X[,var], y, xlab = var, ...)
+  lines(X[o,var], preds[o], col="red",lwd=2)
+
 }

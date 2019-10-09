@@ -12,7 +12,7 @@ LS.model(formula, data = NULL)
 \item{data}{data frame to which the formula relates}
 }
 \value{
-list containing two elements: Parameters, df
+list containing three elements: Parameters, df, y
 }
 \description{
 Least Squares Regression

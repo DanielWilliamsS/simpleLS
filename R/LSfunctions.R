@@ -45,13 +45,18 @@ LS.predict = function(model, newdata=NULL){
 
 #' Plot least squares regression
 #'
-#' @param model
+#' @param model output from LS.model
+#' @param var string value of which input variable to plot
+#' @param ... additional arguments to be passed to \code{plot}
 #'
-#' @return
+#' @return a plot of the model output against an input variable with predicted line from model
 #' @export
 #'
 #' @examples
-LS.plot = function(model, var = NULL,...){
+#' df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
+#' m = LS.model(y~x, data=df)
+#' LS.plot(m,var="x")
+LS.plot = function(model, var = NULL, ...){
   X = model$df
   y = model$y
   d = dim(X)

@@ -4,11 +4,23 @@
 \alias{LS.plot}
 \title{Plot least squares regression}
 \usage{
-LS.plot(model)
+LS.plot(model, var = NULL, ...)
 }
 \arguments{
-\item{model}{}
+\item{model}{output from LS.model}
+
+\item{var}{string value of which input variable to plot}
+
+\item{...}{additional arguments to be passed to \code{plot}}
+}
+\value{
+a plot of the model output against an input variable with predicted line from model
 }
 \description{
 Plot least squares regression
+}
+\examples{
+df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
+m = LS.model(y~x, data=df)
+LS.plot(m,var="x")
 }

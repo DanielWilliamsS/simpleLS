@@ -19,11 +19,6 @@ LS.r = function(formula, data = NULL){
 
   return(list(Parameters = wLS, df = X))
 }
-
-# library(lasso2)
-# data(Prostate)
-# LS.r(lpsa ~ lcavol, data = Prostate)
-
 #' Least Squares Prediction
 #'
 #' @param model output from \code{LS.r} function
@@ -47,10 +42,3 @@ LS.p = function(model, newdata=NULL){
     return((nd) %*% model$Parameters)
     }
 }
-
-
-# library(lasso2)
-# data(Prostate)
-# m = LS.r(lpsa ~ lcavol, data = Prostate)
-# plot(Prostate[,c("lcavol","lpsa")])
-# plot(Prostate$lcavol,LS.p(m))

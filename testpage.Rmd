@@ -1,0 +1,27 @@
+---
+title: "Simple Least Squares Regression"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+This package allows least squares regression. The function `LS.model` fits the model to a given dataset `data`, with reference to the formula supplied as an input.
+
+```{r}
+LS.model = function(formula, data = NULL){
+
+  ys = all.vars(formula)[1]
+  y = data[,ys]
+  X = model.matrix(formula, data)
+
+  wLS =  solve(t(X) %*% X) %*% t(X) %*% y
+
+  return(list(Parameters = wLS, df = X, y = y))
+}
+```
+
+This returns the output from the least squares - the parameter estimates. Also included in the output is the model matrix $X$ and the response vector $y$.
+

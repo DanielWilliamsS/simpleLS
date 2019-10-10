@@ -2,11 +2,19 @@ language: r
 dist: xenial
 cache: packages
 branches:
-  only:
-  - master
+    only:
+        - master
+r_packages:
+    - rmarkdown
 
-r_github_packages:
-  - r-lib/covr
+script:
+    - Rscript -e 'rmarkdown::render("testpage.Rmd", output_dir="public")'
 
-after_success:
-  - Rscript -e 'covr::codecov()'
+deploy:
+    provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_PAT
+    on:
+        branch: master
+    local_dir: public
+    target_branch: gh-pages

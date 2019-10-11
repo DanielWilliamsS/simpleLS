@@ -5,7 +5,7 @@
 #'
 #' @return list containing three elements: Parameters, df, y
 #' @export
-#'
+#' @import stats
 #' @examples
 #' df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
 #' LS.model(y~x, data=df)
@@ -52,6 +52,7 @@ LS.predict = function(model, newdata=NULL){
 #' @return a plot of the model output against an input variable with predicted line from model
 #' @export
 #'
+#' @import graphics
 #' @examples
 #' df = data.frame(y = c(1,2,3,4), x = c(2,5,3,1))
 #' m = LS.model(y~x, data=df)

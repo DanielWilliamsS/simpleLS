@@ -3,3 +3,5 @@
 export(LS.model)
 export(LS.plot)
 export(LS.predict)
+import(graphics)
+import(stats)
